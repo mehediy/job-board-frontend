@@ -5,11 +5,11 @@ export const navLinks = [
 ];
 
 export const categories = [
-  { id: "all", label: "All Jobs" },
-  { id: "on-site", label: "On Site" },
-  { id: "remote", label: "Remote Jobs" },
-  { id: "part-time", label: "Part Time" },
-  { id: "hybrid", label: "Hybrid" },
+  { id: "", label: "All Jobs" },
+  { id: "On Site", label: "On Site" },
+  { id: "Remote Jobs", label: "Remote Jobs" },
+  { id: "Part Time", label: "Part Time" },
+  { id: "Hybrid", label: "Hybrid" },
 ];
 
 export const jobs = [
