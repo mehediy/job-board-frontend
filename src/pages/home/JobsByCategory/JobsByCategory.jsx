@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../../../components/buttons/Button";
-import { categories, jobs } from "../../../constants";
+import { categories } from "../../../constants";
 import JobCard from "./JobCard";
 import { getJobs } from "../../../api/jobs";
 import SkeletonCard from "../../../components/loader/SkeletonCard";
@@ -9,7 +9,7 @@ const JobsByCategory = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
   //   Load Jobs Data
-  const { data, isPending, isError, error } = getJobs();
+  const { data, isPending, isError, error } = getJobs(selectedCategory);
 
   return (
     <div className="container mx-auto padding">
