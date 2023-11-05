@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../../../components/buttons/Button";
-import { categories } from "../../../constants";
+import { categories, jobs } from "../../../constants";
 import JobCard from "./JobCard";
 
 const JobsByCategory = () => {
@@ -26,7 +26,11 @@ const JobsByCategory = () => {
             />
           ))}
         </div>
-        <JobCard />
+        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4">
+          {jobs.map((job, idx) => (
+            <JobCard key={idx} job={job} />
+          ))}
+        </div>
       </div>
     </div>
   );
