@@ -19,7 +19,7 @@ const JobsByCategory = () => {
           {categories.map((cat) => (
             <Button
               className={"rounded-3xl"}
-              variant={selectedCategory === cat.id ? "accent" : "outline"}
+              variant={selectedCategory === cat.id ? "accent" : ""}
               onClick={() => setSelectedCategory(cat.id)}
               key={cat.id}
               label={cat.label}

@@ -1,7 +1,10 @@
 const Button = ({ label, variant, onSubmit, onClick, className }) => {
   return (
     <button
-      className={`${!variant && ""}  
+      className={`${
+        !variant &&
+        "bg-dark border border-transparent text-primary hover:bg-brand-primary hover:text-invert"
+      }  
 
       ${
         variant == "outline" &&
