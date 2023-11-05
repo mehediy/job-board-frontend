@@ -9,3 +9,11 @@ export const getJobs = (category) => {
   });
   return jobs;
 };
+
+export const getJob = (id) => {
+  const job = useQuery({
+    queryKey: ["job", id],
+    queryFn: () => axios.get(`/job/${id}`),
+  });
+  return job;
+};
