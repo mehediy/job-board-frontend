@@ -21,12 +21,18 @@ const JobsByCategory = () => {
       </div>
       <div>
         <div className="flex gap-2 justify-center py-12">
+          <Button
+            className={"rounded-3xl"}
+            variant={selectedCategory === "" ? "accent" : ""}
+            onClick={() => setSelectedCategory("")}
+            label={"All Jobs"}
+          />
           {categories.map((cat) => (
             <Button
               className={"rounded-3xl"}
-              variant={selectedCategory === cat.id ? "accent" : ""}
-              onClick={() => setSelectedCategory(cat.id)}
-              key={cat.id}
+              variant={selectedCategory === cat.label ? "accent" : ""}
+              onClick={() => setSelectedCategory(cat.label)}
+              key={cat.label}
               label={cat.label}
             />
           ))}

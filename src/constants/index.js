@@ -11,9 +11,8 @@ export const privateNavLinks = [
 ];
 
 export const categories = [
-  { id: "", label: "All Jobs" },
-  { id: "On Site", label: "On Site" },
-  { id: "Remote", label: "Remote Jobs" },
-  { id: "Part Time", label: "Part Time" },
-  { id: "Hybrid", label: "Hybrid" },
+  { label: "On Site" },
+  { label: "Remote" },
+  { label: "Part Time" },
+  { label: "Hybrid" },
 ];
