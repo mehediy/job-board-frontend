@@ -3,8 +3,11 @@ import Input from "../../components/Forms/Input";
 import Button from "../../components/buttons/Button";
 import { useLoginUserAccount } from "../../api/mutations";
 import toast from "react-hot-toast";
+import useAuth from "../../context/useAuth";
 
 const Login = () => {
+  const { googleLogin } = useAuth();
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -32,8 +35,17 @@ const Login = () => {
       });
   };
 
+  const googleLoginHandler = () => {
+    googleLogin()
+      .then(() => {
+        navigate(location?.state ? location.state : "/");
+        toast.success("Successfully logged in!");
+      })
+      .catch((error) => toast.error(error.code));
+  };
+
   return (
-    <div className="container mx-auto padding min-h-[500px]">
+    <div className="container max-w-sm mx-auto padding min-h-[500px]">
       <h1 className="heading-2 text-center pb-8">Login</h1>
       <form className="max-w-sm w-full mx-auto" onSubmit={loginHandler}>
         <div className="space-y-4">
@@ -54,12 +66,19 @@ const Login = () => {
             variant={loggingInUser ? "disabled" : "accent"}
             label={loggingInUser ? "Please wait..." : "Submit"}
           />
-
-          <Link className="block text-center" to={"/signup"}>
-            Don't have an account? Signup
-          </Link>
         </div>
       </form>
+      <div className="space-y-4 my-4">
+        <Button
+          onClick={googleLoginHandler}
+          className={"w-full"}
+          variant={"outline"}
+          label={"Login with Google"}
+        />
+        <Link className="block text-center" to={"/signup"}>
+          Don't have an account? Signup
+        </Link>
+      </div>
     </div>
   );
 };
