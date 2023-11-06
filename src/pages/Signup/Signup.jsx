@@ -3,7 +3,7 @@ import { useCreateUserAccount } from "../../api/mutations";
 import Input from "../../components/Forms/Input";
 import Button from "../../components/buttons/Button";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../provider/AuthProvider";
 
 const Signup = () => {
@@ -68,6 +68,10 @@ const Signup = () => {
             variant={creatingUser ? "disabled" : "accent"}
             label={creatingUser ? "Submitting" : "Submit"}
           />
+
+          <Link className="block text-center" to={"/login"}>
+            Already have an account? Login
+          </Link>
         </div>
       </form>
     </div>

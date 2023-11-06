@@ -1,49 +1,64 @@
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Input from "../../components/Forms/Input";
 import Button from "../../components/buttons/Button";
+import { useLoginUserAccount } from "../../api/mutations";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const {
+    mutateAsync: loginUser,
+    isPending: loggingInUser,
+    isSuccess,
+  } = useLoginUserAccount();
+
   const loginHandler = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    const user = { email, password };
+
+    loginUser(user)
+      .then((userCredential) => {
+        // Signed in
+        navigate(location?.state ? location.state : "/");
+        toast.success("Successfully logged in!");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
     <div className="container mx-auto padding min-h-[500px]">
       <h1 className="heading-2 text-center pb-8">Login</h1>
       <form className="max-w-sm w-full mx-auto" onSubmit={loginHandler}>
-        <div className="mb-6">
-          <label
-            htmlFor="email"
-            className="block mb-2 text-sm font-medium text-primary"
-          >
-            Your email
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="bg-dark border border-darker text-primary text-sm rounded-lg focus:ring-brand-primary focus:border-brand-primary block w-full p-2.5"
-            placeholder="name@gmail.com"
-            required
+        <div className="space-y-4">
+          <Input
+            label={"Email"}
+            type={"email"}
+            name={"email"}
+            placeholder={"name@gmail.com"}
           />
-        </div>
-        <div className="mb-6">
-          <label
-            htmlFor="password"
-            className="block mb-2 text-sm font-medium text-primary"
-          >
-            Your password
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="bg-dark border border-darker text-primary text-sm rounded-lg focus:ring-brand-primary focus:border-brand-primary block w-full p-2.5"
-            placeholder="***"
-            required
+          <Input
+            label={"Password"}
+            type={"password"}
+            name={"password"}
+            placeholder={"Enter password"}
           />
+          <Button
+            className={"w-full"}
+            variant={loggingInUser ? "disabled" : "accent"}
+            label={loggingInUser ? "Please wait..." : "Submit"}
+          />
+
+          <Link className="block text-center" to={"/signup"}>
+            Don't have an account? Signup
+          </Link>
         </div>
-        <Button className={"w-full"} variant={"accent"} label={"Login"} />
       </form>
     </div>
   );

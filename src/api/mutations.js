@@ -10,3 +10,13 @@ export const useCreateUserAccount = () => {
   });
   return mutation;
 };
+
+export const useLoginUserAccount = () => {
+  const { loginUser } = useAuth();
+  const mutation = useMutation({
+    mutationFn: (user) => {
+      return loginUser(user.email, user.password);
+    },
+  });
+  return mutation;
+};
