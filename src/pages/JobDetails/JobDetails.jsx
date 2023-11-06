@@ -14,7 +14,9 @@ const JobDetails = () => {
   return (
     <div className="container mx-auto min-h-screen">
       {isPending ? (
-        <Spinner />
+        <div className="h-screen">
+          <Spinner />
+        </div>
       ) : (
         <>
           {/* Banner */}
