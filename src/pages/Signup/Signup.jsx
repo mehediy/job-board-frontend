@@ -1,7 +1,19 @@
+import { updateProfile } from "firebase/auth";
+import { useCreateUserAccount } from "../../api/mutations";
 import Input from "../../components/Forms/Input";
 import Button from "../../components/buttons/Button";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../provider/AuthProvider";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const {
+    mutateAsync: createUser,
+    isPending: creatingUser,
+    isSuccess,
+  } = useCreateUserAccount();
+
   const registerHandler = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -9,7 +21,17 @@ const Signup = () => {
     const photoURL = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, photoURL, email, password);
+
+    createUser({ email, password })
+      .then(() => {
+        updateProfile(auth.currentUser, {
+          displayName: name,
+          photoURL: photoURL,
+        });
+        toast.success("Account created");
+        navigate("/");
+      })
+      .catch((error) => toast.error(error.message));
   };
 
   return (
@@ -41,7 +63,11 @@ const Signup = () => {
             name={"password"}
             placeholder={"Enter password"}
           />
-          <Button className={"w-full"} variant={"accent"} label={"Submit"} />
+          <Button
+            className={"w-full"}
+            variant={creatingUser ? "disabled" : "accent"}
+            label={creatingUser ? "Submitting" : "Submit"}
+          />
         </div>
       </form>
     </div>

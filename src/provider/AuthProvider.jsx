@@ -9,7 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../config/firebaseConfig";
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 
