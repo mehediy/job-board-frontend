@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { jobBackground1 } from "../../../assets/images";
-import SearchBox from "./SearchBox";
+import Search from "../../../components/Search";
+
 const Banner = () => {
+  const navigate = useNavigate();
+  const searchHandler = (query) => {
+    navigate(`/all-jobs?search=${query}`);
+  };
+
   return (
     <header className="bg-dark h-[700px] ">
       <div className="container mx-auto h-full px-8 flex items-center justify-between">
@@ -15,7 +22,7 @@ const Banner = () => {
             and resources to fuel your career success. Your dream job is a click
             away.
           </p>
-          <SearchBox />
+          <Search searchHandler={searchHandler} />
         </div>
         <div className="hidden lg:block w-[40%]">
           <img className="w-full" src={jobBackground1} />

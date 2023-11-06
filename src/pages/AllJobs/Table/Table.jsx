@@ -1,15 +1,28 @@
-import Search from "./Search";
+import Search from "../../../components/Search";
 import Row from "./Row";
 import { getJobs } from "../../../api/jobs";
 import Spinner from "../../../components/loader/Spinner";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Table = () => {
-  const { data: job, isPending, isError, error } = getJobs("");
+  // http://localhost:5173/all-jobs?search=
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search");
+
+  // Get search value from Search component
+  const searchHandler = (query) => {
+    setSearchParams({ search: query || "" });
+  };
+
+  //    { data: job, isPending, isError, error } = getJobs(category, searchQuery);
+  const { data: job, isPending, isError, error } = getJobs("", searchQuery);
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div className="pb-4 bg-white">
         <div className="relative mt-1">
-          <Search />
+          <Search searchHandler={searchHandler} value={searchQuery} />
         </div>
       </div>
       <table className="w-full text-sm text-left text-gray-500">

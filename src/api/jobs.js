@@ -2,10 +2,10 @@ import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 
 const axios = useAxios();
-export const getJobs = (category) => {
+export const getJobs = (category, search) => {
   const jobs = useQuery({
-    queryKey: ["jobs", category],
-    queryFn: () => axios.get(`/jobs/?cat=${category}`),
+    queryKey: ["jobs", category, search],
+    queryFn: () => axios.get(`/jobs/?cat=${category || ""}&q=${search || ""}`),
   });
   return jobs;
 };
