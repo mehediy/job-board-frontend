@@ -7,13 +7,15 @@ import { categories } from "../../constants";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { postJob } from "../../api/mutations";
 
 const AddJob = () => {
   const { user } = useAuth();
+  const { mutateAsync: addJob, isPending: addingJob, error } = postJob();
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [deadline, setDeadline] = useState(new Date());
 
-  const addJobHandler = (e) => {
+  const addJobHandler = async (e) => {
     e.preventDefault();
     const form = e.target;
     const banner = form.banner.value;
@@ -34,9 +36,17 @@ const AddJob = () => {
       description,
       applicants,
       date,
-      startDate,
+      deadline,
     };
-    console.log(values);
+    try {
+      await addJob(values).then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Job posted!");
+        }
+      });
+    } catch {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -89,8 +99,8 @@ const AddJob = () => {
               <DatePicker
                 dateFormat="MMMM d, yyyy"
                 className="bg-transparent w-full"
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                selected={deadline}
+                onChange={(date) => setDeadline(date)}
               />
             </div>
           </div>
@@ -99,7 +109,11 @@ const AddJob = () => {
             name={"description"}
             placeholder={"Description"}
           />
-          <Button className={"w-full"} variant={"accent"} label={"Submit"} />
+          <Button
+            className={"w-full"}
+            variant={addingJob ? "disabled" : "accent"}
+            label={addingJob ? "Posting..." : "Submit"}
+          />
         </div>
       </form>
     </div>
