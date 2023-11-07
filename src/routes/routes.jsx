@@ -8,6 +8,7 @@ import Signup from "../pages/Signup/Signup";
 import PrivateRoute from "./PrivateRoute";
 import AddJob from "../pages/AddJob/AddJob";
 import MyJobs from "../pages/MyJobs/MyJobs";
+import UpdateJob from "../pages/UpdateJob/UpdateJob";
 
 const routes = createBrowserRouter([
   {
@@ -43,6 +44,14 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyJobs />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "job/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateJob />
           </PrivateRoute>
         ),
       },

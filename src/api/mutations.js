@@ -40,3 +40,12 @@ export const useDeleteJob = () => {
   });
   return mutation;
 };
+
+export const useUpdateJob = () => {
+  const mutation = useMutation({
+    mutationFn: ({ id, values }) => {
+      return axios.put(`/job/${id}`, values);
+    },
+  });
+  return mutation;
+};
