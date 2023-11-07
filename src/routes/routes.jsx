@@ -9,11 +9,13 @@ import PrivateRoute from "./PrivateRoute";
 import AddJob from "../pages/AddJob/AddJob";
 import MyJobs from "../pages/MyJobs/MyJobs";
 import UpdateJob from "../pages/UpdateJob/UpdateJob";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
