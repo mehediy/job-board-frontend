@@ -32,6 +32,11 @@ const JobDetails = () => {
       return;
     }
 
+    if (new Date(job?.data?.deadline) - new Date() < 0) {
+      toast.error("Deadline over");
+      return;
+    }
+
     try {
       await applyJob(values).then((res) => {
         if (res.data.insertedId) {
@@ -40,7 +45,7 @@ const JobDetails = () => {
         }
       });
     } catch {
-      toast.error("Cannot apply");
+      toast.error("Already applied");
     }
   };
 

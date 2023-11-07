@@ -16,8 +16,8 @@ const PrivateRoute = ({ children }) => {
   if (user) return children;
   return (
     <>
-      <Navigate state={location.pathname} to={"/login"} />
-      {toast.error("You have to log in first to view details")}
+      {toast.error("You have to log in first")}
+      <Navigate state={location.pathname} to={"/login"} />;
     </>
   );
 };
