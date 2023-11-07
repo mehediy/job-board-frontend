@@ -19,7 +19,7 @@ const JobDetails = () => {
     error: applyError,
   } = useApplyJob();
 
-  const { data: job, isPending, isError, error } = getJob(id);
+  const { data: job, isPending, isError, error, refetch } = getJob(id);
 
   const jobApplyHandler = async () => {
     const values = {
@@ -27,10 +27,16 @@ const JobDetails = () => {
       email: email,
     };
 
+    if (job?.data?.email === email) {
+      toast.error("Cannot apply to your own job");
+      return;
+    }
+
     try {
       await applyJob(values).then((res) => {
         if (res.data.insertedId) {
           toast.success("Job applied!");
+          refetch();
         }
       });
     } catch {
