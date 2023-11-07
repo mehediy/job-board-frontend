@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDeleteJob } from "../../../api/mutations";
+import Modal from "../../../components/Modal/modal";
 
 const Row = ({ idx, job, deleteHandler }) => {
   const { _id, user, title, date, deadline, applicants, salary } = job;
@@ -20,12 +20,7 @@ const Row = ({ idx, job, deleteHandler }) => {
       <td className="px-6 py-4">{deadline}</td>
       <td className="px-6 py-4">BDT {salary}</td>
       <td className="px-6 py-4">
-        <button
-          className="font-medium text-blue-600  hover:underline"
-          onClick={() => deleteHandler(_id)}
-        >
-          Delete
-        </button>
+        <Modal fn={() => deleteHandler(_id)} />
       </td>
       <td className="px-6 py-4">
         <Link
