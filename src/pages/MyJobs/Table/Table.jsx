@@ -1,10 +1,28 @@
 import Row from "./Row";
 import { getMyJobs } from "../../../api/jobs";
 import Spinner from "../../../components/loader/Spinner";
+import { useDeleteJob } from "../../../api/mutations";
 
 const Table = () => {
   //    { data: job, isPending, isError, error } = getJobs(category, searchQuery);
-  const { data: job, isPending, isError, error } = getMyJobs();
+  const { data: job, isPending, isError, error, refetch } = getMyJobs();
+
+  const {
+    mutateAsync: deleteJob,
+    isPending: deletingJob,
+    isSuccess: deleteSuccess,
+    error: deleteError,
+  } = useDeleteJob();
+
+  const deleteHandler = async (_id) => {
+    try {
+      await deleteJob(_id).then((res) => console.log(res.data));
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table className="w-full text-sm text-left text-gray-500">
@@ -41,7 +59,14 @@ const Table = () => {
               </td>
             </tr>
           ) : (
-            job?.data?.map((job, idx) => <Row key={idx} idx={idx} job={job} />)
+            job?.data?.map((job, idx) => (
+              <Row
+                key={idx}
+                idx={idx}
+                job={job}
+                deleteHandler={deleteHandler}
+              />
+            ))
           )}
           {isError && (
             <tr>

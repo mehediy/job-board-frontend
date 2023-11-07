@@ -31,3 +31,12 @@ export const postJob = () => {
   });
   return mutation;
 };
+
+export const useDeleteJob = () => {
+  const mutation = useMutation({
+    mutationFn: (id) => {
+      return axios.delete(`/job/${id}`);
+    },
+  });
+  return mutation;
+};

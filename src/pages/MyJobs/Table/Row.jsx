@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import Button from "../../../components/buttons/Button";
+import { useDeleteJob } from "../../../api/mutations";
 
-const Row = ({ idx, job }) => {
+const Row = ({ idx, job, deleteHandler }) => {
   const { _id, user, title, date, deadline, applicants, salary } = job;
-  const deleteHandler = () => {};
+
   return (
     <tr className="bg-white border-b ">
       <td className="w-4 p-4">
@@ -22,7 +22,7 @@ const Row = ({ idx, job }) => {
       <td className="px-6 py-4">
         <button
           className="font-medium text-blue-600  hover:underline"
-          onClick={deleteHandler}
+          onClick={() => deleteHandler(_id)}
         >
           Delete
         </button>
