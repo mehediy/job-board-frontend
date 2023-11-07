@@ -1,3 +1,4 @@
+import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 
@@ -14,6 +15,15 @@ export const getJob = (id) => {
   const job = useQuery({
     queryKey: ["job", id],
     queryFn: () => axios.get(`/job/${id}`),
+  });
+  return job;
+};
+
+export const getMyJobs = () => {
+  const { user } = useAuth();
+  const job = useQuery({
+    queryKey: ["myjobs", user?.email],
+    queryFn: () => axios.get(`/jobs/user/${user?.email}`),
   });
   return job;
 };

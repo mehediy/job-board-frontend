@@ -11,7 +11,13 @@ import { postJob } from "../../api/mutations";
 
 const AddJob = () => {
   const { user } = useAuth();
-  const { mutateAsync: addJob, isPending: addingJob, error } = postJob();
+  const email = user?.email;
+  const {
+    mutateAsync: addJob,
+    isPending: addingJob,
+    isSuccess,
+    error,
+  } = postJob();
 
   const [deadline, setDeadline] = useState(new Date());
 
@@ -31,6 +37,7 @@ const AddJob = () => {
       banner,
       title,
       user,
+      email,
       category,
       salary,
       description,
@@ -38,6 +45,7 @@ const AddJob = () => {
       date,
       deadline,
     };
+    console.log(values);
     try {
       await addJob(values).then((res) => {
         if (res.data.insertedId) {
@@ -111,8 +119,8 @@ const AddJob = () => {
           />
           <Button
             className={"w-full"}
-            variant={addingJob ? "disabled" : "accent"}
-            label={addingJob ? "Posting..." : "Submit"}
+            variant={addingJob ? "disabled" : isSuccess ? "disabled" : "accent"}
+            label={addingJob ? "Posting..." : isSuccess ? "Posted" : "Submit"}
           />
         </div>
       </form>
