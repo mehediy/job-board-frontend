@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Modal from "../../../components/Modal/modal";
+import { formatDate } from "../../../utils/formatDate";
 
 const Row = ({ idx, job, deleteHandler }) => {
   const { _id, user, title, date, deadline, applicants, salary } = job;
@@ -16,8 +17,8 @@ const Row = ({ idx, job, deleteHandler }) => {
         {title}
       </th>
       <td className="px-6 py-4">{user}</td>
-      <td className="px-6 py-4">{date}</td>
-      <td className="px-6 py-4">{deadline}</td>
+      <td className="px-6 py-4">{formatDate(date)}</td>
+      <td className="px-6 py-4">{formatDate(deadline)}</td>
       <td className="px-6 py-4">BDT {salary}</td>
       <td className="px-6 py-4">
         <Modal fn={() => deleteHandler(_id)} />

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { alarmIcon, calendarIcon, peopleIcon } from "../../../assets/icons";
 import Button from "../../../components/buttons/Button";
+import { formatDate } from "../../../utils/formatDate";
 
 const JobCard = ({ job }) => {
   const { _id, user, title, date, deadline, applicants, salary } = job;
@@ -12,11 +13,11 @@ const JobCard = ({ job }) => {
           <p className="text-brand-primary">By: {user}</p>
           <h3 className="text-xl text-primary font-bold pb-1">{title}</h3>
           <p className="text-light flex items-center gap-2">
-            <img src={calendarIcon} /> Posting Date: {date}
+            <img src={calendarIcon} /> Posting Date: {formatDate(date)}
           </p>
           <p className="text-light flex items-center gap-2">
             <img src={alarmIcon} />
-            Deadline: {deadline}
+            Deadline: {formatDate(deadline)}
           </p>
           <p className="text-light flex items-center gap-2">
             <img src={peopleIcon} />

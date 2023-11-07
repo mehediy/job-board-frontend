@@ -6,7 +6,7 @@ import Textarea from "../../components/Forms/Textarea";
 import { categories } from "../../constants";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUpdateJob } from "../../api/mutations";
 import { getJob } from "../../api/jobs";
 import { useParams } from "react-router-dom";
@@ -24,6 +24,12 @@ const UpdateJob = () => {
   } = useUpdateJob();
 
   const [deadline, setDeadline] = useState(new Date());
+  useEffect(() => {
+    if (job?.data?.deadline) {
+      const newDeadline = new Date(job.data.deadline);
+      setDeadline(newDeadline);
+    }
+  }, [job]);
 
   const updateJobHandler = async (e) => {
     e.preventDefault();
