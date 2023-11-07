@@ -2,6 +2,7 @@ import Row from "./Row";
 import { getMyJobs } from "../../../api/jobs";
 import Spinner from "../../../components/loader/Spinner";
 import { useDeleteJob } from "../../../api/mutations";
+import toast from "react-hot-toast";
 
 const Table = () => {
   //    { data: job, isPending, isError, error } = getJobs(category, searchQuery);
@@ -16,10 +17,14 @@ const Table = () => {
 
   const deleteHandler = async (_id) => {
     try {
-      await deleteJob(_id).then((res) => console.log(res.data));
+      await deleteJob(_id).then((res) => {
+        if (res.data.deletedCount == 1) {
+          toast.success("Job deleted");
+        }
+      });
       refetch();
     } catch (error) {
-      console.log(error);
+      toast.error(deleteError.message);
     }
   };
 
