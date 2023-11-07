@@ -3,12 +3,39 @@ import { getJob } from "../../api/jobs";
 import Spinner from "../../components/loader/Spinner";
 import Button from "../../components/buttons/Button";
 import { peopleIcon } from "../../assets/icons";
+import useAuth from "../../hooks/useAuth";
+import { useApplyJob } from "../../api/mutations";
+import toast from "react-hot-toast";
 
 const JobDetails = () => {
   const { id } = useParams();
+  const { user } = useAuth();
+  const email = user?.email;
+
+  const {
+    mutateAsync: applyJob,
+    isPending: applyingJob,
+    isSuccess,
+    error: applyError,
+  } = useApplyJob();
+
   const { data: job, isPending, isError, error } = getJob(id);
-  const jobApplyHandler = () => {
-    console.log("Apply");
+
+  const jobApplyHandler = async () => {
+    const values = {
+      job_id: id,
+      email: email,
+    };
+
+    try {
+      await applyJob(values).then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Job applied!");
+        }
+      });
+    } catch {
+      toast.error("Cannot apply");
+    }
   };
 
   return (

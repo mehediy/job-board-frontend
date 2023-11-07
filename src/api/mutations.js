@@ -49,3 +49,12 @@ export const useUpdateJob = () => {
   });
   return mutation;
 };
+
+export const useApplyJob = () => {
+  const mutation = useMutation({
+    mutationFn: (values) => {
+      return axios.post(`/apply-job/`, values);
+    },
+  });
+  return mutation;
+};
