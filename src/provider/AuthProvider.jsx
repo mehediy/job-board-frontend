@@ -40,11 +40,11 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     const loadingToast = toast.loading("Logging out");
 
-    await axios
-      .post("/logout")
+    signOut(auth)
       .then((res) => {
-        signOut(auth)
-          .then((res) => toast.success("Logged out", { id: loadingToast }))
+        toast.success("Logged out", { id: loadingToast });
+        axios
+          .post("/logout")
           .catch((error) => toast.error(error.message, { id: loadingToast }));
       })
       .catch((error) => toast.error(error.message, { id: loadingToast }));

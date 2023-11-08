@@ -36,7 +36,6 @@ const JobDetails = () => {
   } = useApplyJob();
 
   const { data: job, isPending, isError, error, refetch } = getJob(id);
-  console.log(error);
 
   const [resume, setResume] = useState("");
   const jobApplyHandler = async () => {
