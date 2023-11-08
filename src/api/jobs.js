@@ -11,6 +11,14 @@ export const getJobs = (category, search) => {
   return jobs;
 };
 
+export const getPopularJobs = () => {
+  const jobs = useQuery({
+    queryKey: ["popular-jobs"],
+    queryFn: () => axios.get("/popular-jobs"),
+  });
+  return jobs;
+};
+
 export const getJob = (id) => {
   const job = useQuery({
     queryKey: ["job", id],

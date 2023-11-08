@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-dark">
       <div className="container mx-auto h-full flex flex-col justify-between">
-        <div className="padding grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-light py-4">
+        <div className="padding grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-light py-4 text-center md:text-left">
           <div className="space-y-2">
             <h3 className="font-bold text-3xl text-primary">Jobs</h3>
             <p>Find your favorite job online</p>
