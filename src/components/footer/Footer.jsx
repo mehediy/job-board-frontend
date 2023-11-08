@@ -4,12 +4,17 @@ import { navLinks, privateNavLinks, socialLinks } from "../../constants";
 const Footer = () => {
   return (
     <footer className="bg-dark">
-      <div className="container mx-auto h-full padding flex flex-col justify-between">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-light py-4">
+      <div className="container mx-auto h-full flex flex-col justify-between">
+        <div className="padding grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-light py-4">
           <div className="space-y-2">
-            <h3 className="font-bold text-2xl text-primary">Jobs</h3>
-            <p>Find your favorite job</p>
-            <p className="text-sm">7A, Road 2, Dhanmondi, Dhaka, 1205</p>
+            <h3 className="font-bold text-3xl text-primary">Jobs</h3>
+            <p>Find your favorite job online</p>
+            <div className="py-2">
+              <p className="text-sm">
+                <span className="font-medium">Address:</span>
+                <br /> 7A, Road 2, Dhanmondi, Dhaka, 1205
+              </p>
+            </div>
           </div>
           <div className="flex flex-col gap-2">
             <h3 className="font-bold text-lg">Explore</h3>
@@ -56,9 +61,10 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-wrap gap-4 justify-center sm:justify-between text-light text-sm">
+        <div className="flex flex-wrap gap-2 py-4 items-center flex-col justify-center text-light text-sm">
           <p>© 2023 Jobs. All Rights Reserved.</p>
           <div className="space-x-4">
+            <Link to={"#"}>Help</Link>
             <Link to={"#"}>Terms of Service</Link>
             <Link to={"#"}>Privacy Policy</Link>
           </div>
