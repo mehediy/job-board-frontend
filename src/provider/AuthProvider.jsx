@@ -9,11 +9,15 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../config/firebaseConfig";
+import useAxios from "../hooks/useAxios";
+import toast from "react-hot-toast";
 export const auth = getAuth(app);
 
 const googleProvider = new GoogleAuthProvider();
 
 export const AuthContext = createContext(null);
+
+const axios = useAxios();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -33,15 +37,25 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
     setLoading(true);
-    return signOut(auth);
+    const loadingToast = toast.loading("Logging out");
+
+    await axios
+      .post("/logout")
+      .then((res) => {
+        signOut(auth)
+          .then((res) => toast.success("Logged out", { id: loadingToast }))
+          .catch((error) => toast.error(error.message, { id: loadingToast }));
+      })
+      .catch((error) => toast.error(error.message, { id: loadingToast }));
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
+      if (user) axios.post("/auth/jwt", { email: user.email });
     });
     return () => unSubscribe();
   }, []);

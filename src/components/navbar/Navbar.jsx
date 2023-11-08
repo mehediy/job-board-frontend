@@ -7,9 +7,7 @@ import toast from "react-hot-toast";
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const logoutHandler = () => {
-    logoutUser()
-      .then(() => toast.success("Logged out!"))
-      .catch((error) => toast.error(error.message));
+    logoutUser();
   };
   return (
     <nav className="bg-primary text-primary border border-b-2 border-dark">
