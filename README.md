@@ -1,8 +1,18 @@
-# React + Vite
+# Job Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Link : <a href="https://jobs-69b32.web.app/" target="_blank">https://jobs-69b32.web.app/</a>
 
-Currently, two official plugins are available:
+### Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Login & Registration systems
+- Filter Jobs by category
+- Search Jobs by title
+- Login to view job details
+- Add new job
+- Apply to jobs posted by others
+- Can't apply if deadline is over
+- Manage your added jobs (update/delete)
+- See the jobs you have applied
+- Notification for every operation
+- Mobile responsive
+- JWT to prevent unauthorized access
