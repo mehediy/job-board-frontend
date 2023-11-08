@@ -1,3 +1,4 @@
+import Features from "./Features";
 import Banner from "./Header/Banner";
 import JobsByCategory from "./JobsByCategory/JobsByCategory";
 
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Banner />
       <JobsByCategory />
+      <Features />
     </>
   );
 };

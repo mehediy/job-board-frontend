@@ -61,7 +61,7 @@ const Table = () => {
         <tbody>
           {isPending ? (
             <tr>
-              <td className="px-6 py-4 h-[100px]" colSpan={7}>
+              <td className="px-6 py-4 h-[100px]" colSpan={8}>
                 <Spinner />
               </td>
             </tr>
@@ -69,7 +69,7 @@ const Table = () => {
             <tr>
               <td
                 className="px-6 py-4 h-[100px] text-center text-error"
-                colSpan={7}
+                colSpan={8}
               >
                 No jobs found
               </td>

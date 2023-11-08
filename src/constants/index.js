@@ -16,6 +16,16 @@ export const socialLinks = [
   { href: "#", label: "Youtube" },
 ];
 
+export const features = [
+  { description: "Access to millions of job seekers" },
+  {
+    description: "Only pay for the candidates you want to contact",
+  },
+  {
+    description: "Post unlimited jobs for free—all from one place",
+  },
+];
+
 export const categories = [
   { label: "On Site" },
   { label: "Remote" },
