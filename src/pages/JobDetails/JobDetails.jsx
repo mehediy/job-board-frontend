@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import Input from "../../components/Forms/Input";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -86,6 +87,9 @@ const JobDetails = () => {
         </div>
       ) : (
         <>
+          <Helmet>
+            <title>{job?.data?.title} | Jobs</title>
+          </Helmet>
           {/* Banner */}
           <div className="h-[200px] md:h-[400px] xl:h-[450px] px-0 md:px-4">
             <img

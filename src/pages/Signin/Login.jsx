@@ -4,6 +4,7 @@ import Button from "../../components/buttons/Button";
 import { useLoginUserAccount } from "../../api/mutations";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { googleLogin } = useAuth();
@@ -46,6 +47,9 @@ const Login = () => {
 
   return (
     <div className="container max-w-sm mx-auto padding min-h-[500px]">
+      <Helmet>
+        <title>Login | Jobs</title>
+      </Helmet>
       <h1 className="heading-2 text-center pb-8">Login</h1>
       <form className="max-w-sm w-full mx-auto" onSubmit={loginHandler}>
         <div className="space-y-4">

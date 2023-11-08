@@ -5,6 +5,7 @@ import Button from "../../components/buttons/Button";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -36,6 +37,9 @@ const Signup = () => {
 
   return (
     <div className="container mx-auto padding min-h-[500px]">
+      <Helmet>
+        <title>Signup | Jobs</title>
+      </Helmet>
       <h1 className="heading-2 text-center pb-8">Signup</h1>
       <form className="max-w-sm w-full mx-auto" onSubmit={registerHandler}>
         <div className="space-y-4">

@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { postJob } from "../../api/mutations";
+import { Helmet } from "react-helmet-async";
 
 const AddJob = () => {
   const { user } = useAuth();
@@ -59,6 +60,9 @@ const AddJob = () => {
 
   return (
     <div className="container mx-auto padding min-h-[500px]">
+      <Helmet>
+        <title>Add a Job | Jobs</title>
+      </Helmet>
       <h1 className="heading-2 text-center pb-8">Add a Job</h1>
       <form className="max-w-sm w-full mx-auto" onSubmit={addJobHandler}>
         <div className="space-y-4 w-full">

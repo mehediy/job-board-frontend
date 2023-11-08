@@ -11,6 +11,7 @@ import { useUpdateJob } from "../../api/mutations";
 import { getJob } from "../../api/jobs";
 import { useParams } from "react-router-dom";
 import Spinner from "../../components/loader/Spinner";
+import { Helmet } from "react-helmet-async";
 
 const UpdateJob = () => {
   const { id } = useParams();
@@ -62,6 +63,9 @@ const UpdateJob = () => {
 
   return (
     <div className="container mx-auto padding min-h-[500px]">
+      <Helmet>
+        <title>Update Jobs | Jobs</title>
+      </Helmet>
       <h1 className="heading-2 text-center pb-8">Update Job</h1>
       {isPending ? (
         <Spinner />
