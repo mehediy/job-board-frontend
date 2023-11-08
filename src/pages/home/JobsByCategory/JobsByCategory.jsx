@@ -20,7 +20,7 @@ const JobsByCategory = () => {
         </p>
       </div>
       <div>
-        <div className="flex gap-2 justify-center py-12">
+        <div className="flex gap-2 justify-center flex-wrap py-12">
           <Button
             className={"rounded-3xl"}
             variant={selectedCategory === "" ? "accent" : ""}

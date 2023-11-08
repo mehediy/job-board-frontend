@@ -8,7 +8,7 @@ const JobCard = ({ job }) => {
   const navigate = useNavigate();
   return (
     <div className="bg-primary border border-darker hover:border-brand-primary ease rounded px-6 pt-6 pb-3">
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col gap-4 sm:flex-row justify-between items-start sm:items-end">
         <div className="space-y-1">
           <p className="text-brand-primary">By: {user}</p>
           <h3 className="text-xl text-primary font-bold pb-1">{title}</h3>
