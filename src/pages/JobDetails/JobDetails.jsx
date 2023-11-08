@@ -41,6 +41,11 @@ const JobDetails = () => {
     const values = {
       job_id: id,
       email: email,
+      title: job?.data?.title,
+      user: job?.data?.user,
+      salary: job?.data?.salary,
+      category: job?.data?.category,
+      deadline: job?.data?.deadline,
       resume,
     };
 
@@ -152,7 +157,7 @@ const JobDetails = () => {
 
               <ModalFooter className="space-x-2">
                 <Button
-                  variant={isSuccess ? "disabled" : "accent"}
+                  variant={applyingJob || isSuccess ? "disabled" : "accent"}
                   label={
                     applyingJob ? "Applying" : isSuccess ? "Applied" : "Apply"
                   }

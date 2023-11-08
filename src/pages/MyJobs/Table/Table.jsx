@@ -30,6 +30,7 @@ const Table = () => {
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <h1 className="heading-2 text-center pb-8">My Jobs</h1>
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
@@ -61,6 +62,15 @@ const Table = () => {
             <tr>
               <td className="px-6 py-4 h-[100px]" colSpan={7}>
                 <Spinner />
+              </td>
+            </tr>
+          ) : job?.data?.length === 0 ? (
+            <tr>
+              <td
+                className="px-6 py-4 h-[100px] text-center text-error"
+                colSpan={7}
+              >
+                No jobs found
               </td>
             </tr>
           ) : (

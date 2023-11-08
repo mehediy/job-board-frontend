@@ -32,7 +32,7 @@ export const getAppliedJobs = () => {
   const { user } = useAuth();
   const appliedjobs = useQuery({
     queryKey: ["appliedjobs", user?.email],
-    queryFn: () => axios.get(`/applied-jobs/${user?.email}`),
+    queryFn: () => axios.get(`/applied-jobs?email=${user?.email}`),
   });
   return appliedjobs;
 };
