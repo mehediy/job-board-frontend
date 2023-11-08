@@ -28,11 +28,14 @@ export const getMyJobs = () => {
   return job;
 };
 
-export const getAppliedJobs = () => {
+export const getAppliedJobs = (category) => {
   const { user } = useAuth();
   const appliedjobs = useQuery({
-    queryKey: ["appliedjobs", user?.email],
-    queryFn: () => axios.get(`/applied-jobs?email=${user?.email}`),
+    queryKey: ["appliedjobs", user?.email, category],
+    queryFn: () =>
+      axios.get(
+        `/applied-jobs?email=${user?.email}&category=${category || ""}`
+      ),
   });
   return appliedjobs;
 };

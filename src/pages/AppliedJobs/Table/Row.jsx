@@ -3,7 +3,7 @@ import Modal from "../../../components/Modal/modal";
 import { formatDate } from "../../../utils/formatDate";
 
 const Row = ({ idx, job }) => {
-  const { job_id: _id, user, title, deadline, resume, salary } = job;
+  const { job_id: _id, user, category, title, deadline, resume, salary } = job;
 
   return (
     <tr className="bg-white border-b ">
@@ -17,6 +17,7 @@ const Row = ({ idx, job }) => {
         {title}
       </th>
       <td className="px-6 py-4">{user}</td>
+      <td className="px-6 py-4">{category}</td>
       <td className="px-6 py-4">{formatDate(deadline)}</td>
       <td className="px-6 py-4"> {salary}</td>
       <td className="px-6 py-4">
