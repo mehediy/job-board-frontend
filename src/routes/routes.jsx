@@ -11,6 +11,7 @@ import MyJobs from "../pages/MyJobs/MyJobs";
 import UpdateJob from "../pages/UpdateJob/UpdateJob";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AppliedJobs from "../pages/AppliedJobs/AppliedJobs";
+import Blogs from "../pages/Blogs/Blogs";
 
 const routes = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const routes = createBrowserRouter([
       {
         path: "signup",
         element: <Signup />,
+      },
+      {
+        path: "blogs",
+        element: <Blogs />,
       },
     ],
   },
