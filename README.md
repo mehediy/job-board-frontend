@@ -16,3 +16,5 @@ Link : <a href="https://jobs-69b32.web.app/" target="_blank">https://jobs-69b32.
 - Notification for every operation
 - Mobile responsive
 - JWT to prevent unauthorized access
+
+\*\*\* Make sure browser third-party cookie is not disabled
