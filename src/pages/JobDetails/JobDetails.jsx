@@ -7,10 +7,25 @@ import useAuth from "../../hooks/useAuth";
 import { useApplyJob } from "../../api/mutations";
 import toast from "react-hot-toast";
 
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
+import Input from "../../components/Forms/Input";
+import { useState } from "react";
+
 const JobDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const email = user?.email;
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const {
     mutateAsync: applyJob,
@@ -21,11 +36,18 @@ const JobDetails = () => {
 
   const { data: job, isPending, isError, error, refetch } = getJob(id);
 
+  const [resume, setResume] = useState("");
   const jobApplyHandler = async () => {
     const values = {
       job_id: id,
       email: email,
+      resume,
     };
+
+    if (resume.length < 1) {
+      toast.error("Enter resume");
+      return;
+    }
 
     if (job?.data?.email === email) {
       toast.error("Cannot apply to your own job");
@@ -38,14 +60,16 @@ const JobDetails = () => {
     }
 
     try {
-      await applyJob(values).then((res) => {
-        if (res.data.insertedId) {
-          toast.success("Job applied!");
-          refetch();
-        }
-      });
+      await applyJob(values)
+        .then((res) => {
+          if (res.data.insertedId) {
+            toast.success("Job applied!");
+            refetch();
+          }
+        })
+        .catch((error) => toast.error(error.response.data.message));
     } catch {
-      toast.error("Already applied");
+      toast.error("Something is wrong");
     }
   };
 
@@ -86,7 +110,8 @@ const JobDetails = () => {
                 <Button
                   variant={"accent"}
                   label={"Apply Now"}
-                  onClick={jobApplyHandler}
+                  // onClick={jobApplyHandler}
+                  onClick={onOpen}
                 />
 
                 <p className="text-lg font-semibold">
@@ -102,6 +127,41 @@ const JobDetails = () => {
               <p className="text-light">{job?.data?.description}</p>
             </div>
           </div>
+
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Apply Job</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Input
+                  label={"User Name"}
+                  type={"text"}
+                  name={"user"}
+                  defaultValue={job?.data?.user}
+                  disabled={true}
+                />
+                <Input
+                  onChange={(e) => setResume(e.target.value)}
+                  label={"Resume Link"}
+                  type={"text"}
+                  placeholder={"Resume link"}
+                  name={"resume"}
+                />
+              </ModalBody>
+
+              <ModalFooter className="space-x-2">
+                <Button
+                  variant={isSuccess ? "disabled" : "accent"}
+                  label={
+                    applyingJob ? "Applying" : isSuccess ? "Applied" : "Apply"
+                  }
+                  onClick={jobApplyHandler}
+                />
+                <Button variant={"outline"} label={"Close"} onClick={onClose} />
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </>
       )}
     </div>

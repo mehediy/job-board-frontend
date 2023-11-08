@@ -6,6 +6,7 @@ import routes from "./routes/routes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AuthProvider from "./provider/AuthProvider";
 import { Toaster } from "react-hot-toast";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,11 +18,13 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={routes} />
-        <Toaster />
-      </QueryClientProvider>
-    </AuthProvider>
+    <ChakraProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={routes} />
+          <Toaster />
+        </QueryClientProvider>
+      </AuthProvider>
+    </ChakraProvider>
   </React.StrictMode>
 );

@@ -1,4 +1,12 @@
-const Input = ({ label, name, type, placeholder, defaultValue, disabled }) => {
+const Input = ({
+  label,
+  name,
+  type,
+  placeholder,
+  defaultValue,
+  disabled,
+  onChange,
+}) => {
   return (
     <>
       <label className="block text-sm font-medium text-primary">
@@ -11,6 +19,7 @@ const Input = ({ label, name, type, placeholder, defaultValue, disabled }) => {
           required
           defaultValue={defaultValue}
           disabled={disabled}
+          onChange={onChange}
         />
       </label>
     </>
