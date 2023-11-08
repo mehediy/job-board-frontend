@@ -12,6 +12,9 @@ import UpdateJob from "../pages/UpdateJob/UpdateJob";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import AppliedJobs from "../pages/AppliedJobs/AppliedJobs";
 import Blogs from "../pages/Blogs/Blogs";
+import BlogAccessToken from "../constants/BlogAccessToken";
+import BlogExpressNest from "../constants/BlogExpressNest";
+import BlogExplain from "../constants/BlogExplain";
 
 const routes = createBrowserRouter([
   {
@@ -78,6 +81,18 @@ const routes = createBrowserRouter([
       {
         path: "blogs",
         element: <Blogs />,
+      },
+      {
+        path: "blogs/access-token",
+        element: <BlogAccessToken />,
+      },
+      {
+        path: "blogs/express-nest",
+        element: <BlogExpressNest />,
+      },
+      {
+        path: "blogs/explain",
+        element: <BlogExplain />,
       },
     ],
   },
