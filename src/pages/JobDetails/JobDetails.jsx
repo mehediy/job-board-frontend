@@ -99,7 +99,9 @@ const JobDetails = () => {
             {/* Heading */}
             <div className="flex gap-4 flex-col md:flex-row justify-between items-center md:items-start flex-1">
               <div className="flex gap-4 flex-col md:flex-row items-center md:items-start">
-                <div className="bg-slate-200 w-[64px] h-[64px]"></div>
+                <div className="bg-slate-200 w-[64px] h-[64px]">
+                  {user?.photoURL && <img src={user?.photoURL} />}
+                </div>
                 <div className="flex flex-col items-center md:items-start">
                   <p className="text-brand-primary font-semibold">
                     {job?.data?.user}
