@@ -17,7 +17,7 @@ const Row = ({ idx, job }) => {
       <td className="px-6 py-4">{user}</td>
       <td className="px-6 py-4">{formatDate(date)}</td>
       <td className="px-6 py-4">{formatDate(deadline)}</td>
-      <td className="px-6 py-4">BDT {salary}</td>
+      <td className="px-6 py-4"> {salary}</td>
       <td className="px-6 py-4">
         <Link
           to={`/job/${_id}`}

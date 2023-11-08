@@ -33,7 +33,7 @@ const JobCard = ({ job }) => {
       </div>
       <div className="border-b-2 border-dark mt-4 mb-2"></div>
 
-      <p className="text-lg font-semibold">Salary: BDT {salary}</p>
+      <p className="text-lg font-semibold">Salary: {salary}</p>
     </div>
   );
 };

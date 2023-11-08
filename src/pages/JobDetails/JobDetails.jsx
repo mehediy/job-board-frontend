@@ -115,7 +115,7 @@ const JobDetails = () => {
                 />
 
                 <p className="text-lg font-semibold">
-                  Salary: BDT {job?.data?.salary}
+                  Salary: {job?.data?.salary}
                 </p>
               </div>
             </div>

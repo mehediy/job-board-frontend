@@ -18,7 +18,7 @@ const Row = ({ idx, job, deleteHandler }) => {
       <td className="px-6 py-4">{user}</td>
       <td className="px-6 py-4">{date}</td>
       <td className="px-6 py-4">{deadline}</td>
-      <td className="px-6 py-4">BDT {salary}</td>
+      <td className="px-6 py-4"> {salary}</td>
 
       <td className="px-6 py-4">
         <Link
