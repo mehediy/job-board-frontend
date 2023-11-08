@@ -10,6 +10,12 @@ export const privateNavLinks = [
   { href: "/applied-jobs", label: "Applied Jobs" },
 ];
 
+export const socialLinks = [
+  { href: "#", label: "Facebook" },
+  { href: "#", label: "Instagram" },
+  { href: "#", label: "Youtube" },
+];
+
 export const categories = [
   { label: "On Site" },
   { label: "Remote" },
