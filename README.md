@@ -17,4 +17,8 @@ Link : <a href="https://jobs-69b32.web.app/" target="_blank">https://jobs-69b32.
 - Mobile responsive
 - JWT to prevent unauthorized access
 
-\*\*\* Make sure browser third-party cookie is not disabled
+### Technology Used
+
+![Tech](https://skillicons.dev/icons?i=react,nodejs,express,mongo,firebase,tailwind)
+
+\*\*\* Make sure browser third-party cookie is not blocked
